@@ -55,11 +55,15 @@ th {
 .no {
   text-align: center;
   font-size: 30px;
-  
 }
 #image {
   display: none !important;
 }
 .im {
   width: 30% !important;
+}
+#check {
+  height: 25px;
+  width: 25px;
+  accent-color: #717fe0;
 }

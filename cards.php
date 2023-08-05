@@ -304,6 +304,9 @@ session_start()
                         echo "<span class='stext-105 cl3'>";
                         echo "price: $" . "$value[3]";
                         echo "</span>";
+                        echo "<span class='stext-105 cl3'>";
+                        echo "$value[4]";
+                        echo "</span>";
                         echo "</div>";
 
                         echo "<div class='block2-txt-child2 flex-r p-t-3'>";

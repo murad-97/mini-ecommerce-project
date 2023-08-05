@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 if (!isset($_SESSION["cards"])) {
     $_SESSION["cards"] = array();
@@ -29,7 +30,7 @@ if (!isset($_SESSION["cards"])) {
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="../css/util.css">
     <link rel="stylesheet" type="text/css" href="../css/main.css">
-    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/admin1.css">
     <title>Document</title>
 </head>
 
@@ -212,6 +213,8 @@ if (!isset($_SESSION["cards"])) {
             file</label>
         <label for="">product price</label>
         <input class="form-control form-control-lg" type="product price" name="product-price" Required>
+        <label for="">status</label>
+        <input id="check" class="form-control form-control-lg" type="checkbox" name="active">
         <input class=" add flex-c-m stext-101 cl0 size-103 bg1 bor1 hov-btn2 p-lr-15 trans-04" type="submit"
             name="submit" value="add">
     </form>
@@ -234,6 +237,7 @@ if (!isset($_SESSION["cards"])) {
         }
         // print_r($_POST);
         if ($_SESSION["status"] == true) {
+
             if (isset($_POST["submit"])) {
                 $Name = $_FILES["product-image"]["name"];
                 $tempName = $_FILES["product-image"]["tmp_name"];
@@ -247,7 +251,11 @@ if (!isset($_SESSION["cards"])) {
                         $check = false;
                     }
                 }
-
+                if (isset($_POST['active'])) {
+                    $state = "in stock";
+                } else {
+                    $state = "out of stock";
+                }
                 if ($check) {
 
                     array_push(
@@ -257,6 +265,7 @@ if (!isset($_SESSION["cards"])) {
                             $_POST['product-desc'],
                             $Name,
                             $_POST['product-price'],
+                            $state,
                         )
                     );
                 }
@@ -268,6 +277,7 @@ if (!isset($_SESSION["cards"])) {
                 echo "<th scope='col'>DESCRIPTION</th>";
                 echo "<th scope='col'>IMAGE</th>";
                 echo "<th scope='col'>PRICE</th>";
+                echo "<th scope='col'>STATUS</th>";
                 echo "<th scope='col'>Delete</th>";
                 "<tr>";
 
@@ -280,6 +290,7 @@ if (!isset($_SESSION["cards"])) {
                     echo "<img class = 'image' src= $value[2] >";
                     echo "</td>";
                     echo "<td>$value[3]</td>";
+                    echo "<td>$value[4]</td>";
                     echo "<td><form class = 'del' action='' method='POST'> <input type='submit' placeholder='hi' value='Delete'  name='' > <input type='hidden' placeholder='hi' value=$key style='color: red' name='Delete' ></form></td>";
                     echo "</tr>";
                 }
